@@ -4,6 +4,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { PartnershipSection } from './components/PartnershipSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
+import { CarouselSection } from './components/CarouselSection';
 
 import { Header } from './components/Header';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -13,10 +14,11 @@ export default function App() {
     <LanguageProvider>
       <div className="w-full">
         <Header />
-        <div className="pt-[73px]">
+        <div>
           <HeroSection />
           <ValuePropositionSection />
           <ServicesSection />
+          <CarouselSection />
           <PartnershipSection />
           <TestimonialsSection />
           <ContactSection />

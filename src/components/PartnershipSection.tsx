@@ -4,7 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 export function PartnershipSection() {
   const { t } = useLanguage();
   
-  const benefits = [1, 2, 3, 4].map(num => ({
+  const benefits = [1, 2, 3].map(num => ({
     title: t(`partnership.${num}.title`),
     description: t(`partnership.${num}.description`)
   }));
@@ -15,7 +15,7 @@ export function PartnershipSection() {
   }));
 
   return (
-    <section className="py-32 px-6 bg-slate-50">
+    <section className="py-32 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           className="text-center mb-20"
@@ -30,11 +30,11 @@ export function PartnershipSection() {
           </h2>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-px bg-slate-900 mb-20">
+        <div className="grid md:grid-cols-3 gap-px bg-slate-900 mb-20">
           {benefits.map((benefit, index) => (
             <motion.div 
               key={index} 
-              className="bg-white p-12 transition-all group cursor-default"
+              className="bg-slate-50 p-12 transition-all group cursor-default"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -46,7 +46,6 @@ export function PartnershipSection() {
                 </span>
                 <div className="flex-1">
                   <h3 className="text-xl mb-3" style={{fontFamily: 'Playfair Display, serif'}}>{benefit.title}</h3>
-                  <p className="text-sm text-slate-600 transition-colors leading-relaxed">{benefit.description}</p>
                 </div>
               </div>
             </motion.div>
@@ -65,30 +64,6 @@ export function PartnershipSection() {
               {t('partnership.portfolioTitle')}
             </h3>
           </motion.div>
-          
-          <div className="space-y-0 border-t border-slate-900">
-            {detailedServices.map((service, index) => (
-              <motion.div 
-                key={index} 
-                className="border-b border-slate-200 py-8 hover:bg-white transition-colors px-8 cursor-default"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ x: 4 }}
-              >
-                <div className="flex items-start gap-8">
-                  <span className="text-3xl text-slate-300 mt-[-4px]" style={{fontFamily: 'Playfair Display, serif'}}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="flex-1">
-                    <h4 className="text-2xl mb-2" style={{fontFamily: 'Playfair Display, serif'}}>{service.title}</h4>
-                    <p className="text-sm text-slate-600 leading-relaxed">{service.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

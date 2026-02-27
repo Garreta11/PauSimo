@@ -4,20 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const carouselImages = [
-  {
-    url: "https://images.unsplash.com/photo-1761229660889-eaa22b0db8b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGFydHMlMjB0aGVhdGVyJTIwcGVyZm9ybWFuY2V8ZW58MXx8fHwxNzcxNTgzMTY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    label: "Culture"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1587090564077-c7b8f2f1249e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaWxtJTIwbWVkaWElMjBwcm9kdWN0aW9uJTIwc3R1ZGlvfGVufDF8fHx8MTc3MTU4MzE2N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    label: "Media"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1763568258557-515962e11f38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwQUklMjBzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDF8fHx8MTc3MTU4MzE2OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    label: "Tech"
-  }
-];
+
 
 export function ValuePropositionSection() {
   const { t } = useLanguage();
@@ -25,7 +12,8 @@ export function ValuePropositionSection() {
   const problems = [
     { issue: t('value.problem1'), result: t('value.result1') },
     { issue: t('value.problem2'), result: t('value.result2') },
-    { issue: t('value.problem3'), result: t('value.result3') }
+    { issue: t('value.problem3'), result: t('value.result3') },
+    { issue: t('value.problem4'), result: t('value.result4') },
   ];
 
   const settings = {
@@ -54,37 +42,10 @@ export function ValuePropositionSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-slate-500 mb-6">{t('value.subtitle')}</p>
+          {/* <p className="text-xs tracking-[0.3em] uppercase text-slate-500 mb-6">{t('value.subtitle')}</p> */}
           <h2 className="text-5xl lg:text-6xl leading-[1.1] max-w-4xl mx-auto" style={{fontFamily: 'Playfair Display, serif'}}>
             {t('value.title')}
           </h2>
-        </motion.div>
-        
-        <motion.div 
-          className="mb-20 max-w-4xl mx-auto"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Slider {...settings}>
-            {carouselImages.map((image, index) => (
-              <div key={index}>
-                <div className="relative overflow-hidden">
-                  <img
-                    src={image.url}
-                    alt={image.label}
-                    className="w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  />
-                  <div className="absolute top-8 left-8">
-                    <span className="text-8xl font-bold text-white/90 drop-shadow-2xl" style={{fontFamily: 'Playfair Display, serif'}}>
-                      {image.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
         </motion.div>
         
         <div className="max-w-3xl mx-auto space-y-12">
@@ -107,7 +68,7 @@ export function ValuePropositionSection() {
               >
                 <p className="text-lg">
                   <span className="text-slate-900">{problem.issue}</span>
-                  <span className="text-slate-400 mx-3">→</span>
+                  {/* <span className="text-slate-400 mx-3">→</span> */}
                   <span className="italic text-slate-600">{problem.result}</span>
                 </p>
               </motion.div>
@@ -126,23 +87,6 @@ export function ValuePropositionSection() {
                 {t('value.solution')}
               </p>
             </div>
-          </motion.div>
-          
-          <motion.div 
-            className="pt-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <motion.button 
-              onClick={scrollToContact}
-              className="bg-slate-900 hover:bg-slate-800 text-white px-12 py-4 text-sm tracking-widest uppercase transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {t('value.cta')}
-            </motion.button>
           </motion.div>
         </div>
       </div>

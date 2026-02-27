@@ -33,11 +33,11 @@ export function Header() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <div className="w-10 h-10 bg-slate-900 flex items-center justify-center">
-            <span className="text-white text-xl" style={{fontFamily: 'Playfair Display, serif'}}>P</span>
+          <div className="w-10 h-auto flex items-center justify-center">
+            <img src="/logo.png" alt="Pau Simó Parés" className="w-10 h-auto" />
           </div>
           <span className="text-2xl tracking-tight" style={{fontFamily: 'Playfair Display, serif'}}>
-            Pau Simó
+            Pau Simó Parés
           </span>
         </motion.button>
         

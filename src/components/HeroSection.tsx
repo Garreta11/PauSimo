@@ -21,10 +21,15 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-xs tracking-[0.3em] uppercase text-slate-500">{t('hero.subtitle')}</p>
-              <h1 className="text-6xl lg:text-7xl leading-[1.1] font-playfair" style={{fontFamily: 'Playfair Display, serif'}}>
+              <h1 className="text-6xl lg:text-6xl leading-[1.1] font-playfair" style={{fontFamily: 'Playfair Display, serif'}}>
                 {t('hero.title')}
               </h1>
+              <p className="text-xs tracking-[0.3em] uppercase text-slate-500">
+                <span dangerouslySetInnerHTML={{ __html: t('hero.description') }} />
+                <br/>
+                <br/>
+                {t('hero.subtitle')}
+              </p>
             </motion.div>
             
             <motion.div 
@@ -37,23 +42,15 @@ export function HeroSection() {
                 {t('hero.languages')} <span className="text-slate-400 mx-2">{t('hero.arrow')}</span> {t('hero.target')}
               </p>
               
-              <div className="flex flex-wrap gap-4">
-                {tags.map((tag, index) => (
-                  <motion.span 
-                    key={index}
-                    className="px-4 py-2 border border-slate-900 text-sm hover:bg-slate-900 hover:text-white transition-colors cursor-default"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
-              </div>
-              
-              <p className="text-base text-slate-600 leading-relaxed max-w-lg">
-                {t('hero.description')}
-              </p>
+              <motion.a 
+                className="bg-[#efc868] hover:bg-[#745620] text-white px-12 py-4 text-sm tracking-widest uppercase transition-colors cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="mailto:psimop@gmail.com"
+                target="_blank"
+              >
+                {t('hero.cta')}
+              </motion.a>
             </motion.div>
           </div>
           
@@ -70,7 +67,7 @@ export function HeroSection() {
                 animate={{ rotate: 3 }}
                 transition={{ duration: 1, delay: 0.5 }}
               ></motion.div>
-              <img src="/pau.jpg" alt="Pau Simó - Translation Consultant" className="relative w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+              <img src="/pau.jpg" alt="Pau Simó - Translation Consultant" className="relative w-full aspect-[3/4] object-cover transition-all duration-700" />
             </div>
           </motion.div>
         </div>

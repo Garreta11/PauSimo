@@ -12,7 +12,7 @@ export function TestimonialsSection() {
   }));
 
   return (
-    <section className="py-32 px-6 bg-white">
+    <section className="py-32 px-6 bg-slate-50">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           className="mb-20"
