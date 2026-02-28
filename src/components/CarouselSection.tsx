@@ -29,7 +29,7 @@ const settings = {
 export function CarouselSection() {
   return (
     <motion.div 
-      className="mx-auto bg-slate-50"
+      className="mx-auto bg-[#fdf8ed]"
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}

@@ -1,19 +1,14 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function Header() {
   const { language, setLanguage } = useLanguage();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const languages = [
-    { code: 'en' as const, label: 'English' },
-    { code: 'ca' as const, label: 'Català' },
-    { code: 'es' as const, label: 'Español' }
+    { code: 'en' as const, label: 'EN' },
+    { code: 'ca' as const, label: 'CA' },
+    { code: 'es' as const, label: 'ES' }
   ];
-
-  const currentLanguage = languages.find(lang => lang.code === language);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,44 +31,38 @@ export function Header() {
           <div className="w-10 h-auto flex items-center justify-center">
             <img src="/logo.png" alt="Pau Simó Parés" className="w-10 h-auto" />
           </div>
-          <span className="text-2xl tracking-tight" style={{fontFamily: 'Playfair Display, serif'}}>
+          <span className="text-2xl tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
             Pau Simó Parés
           </span>
         </motion.button>
-        
-        <div className="relative">
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-900 hover:bg-slate-900 hover:text-white transition-colors text-sm"
-            onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-          >
-            <span>{currentLanguage?.label}</span>
-            <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-          </button>
-          
-          {isDropdownOpen && (
-            <motion.div 
-              className="absolute top-full right-0 mt-2 bg-white border border-slate-900 shadow-lg min-w-[140px]"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => {
-                    setLanguage(lang.code);
-                    setIsDropdownOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-3 text-sm hover:bg-slate-900 hover:text-white transition-colors ${
-                    language === lang.code ? 'bg-slate-100' : ''
-                  }`}
-                >
-                  {lang.label}
-                </button>
-              ))}
-            </motion.div>
-          )}
+
+        {/* Inline language switcher */}
+        <div className="flex items-center">
+          {languages.map((lang, index) => (
+            <div key={lang.code} className="flex items-center">
+              <button
+                onClick={() => setLanguage(lang.code)}
+                className={`text-sm px-1 py-0.5 transition-colors relative cursor-pointer ${
+                  language === lang.code
+                    ? 'text-slate-900 font-medium'
+                    : 'text-slate-400 hover:text-slate-700'
+                }`}
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {lang.label}
+                {language === lang.code && (
+                  <motion.div
+                    className="absolute -bottom-0.5 left-0 right-0 h-px bg-[#efc868]"
+                    layoutId="activeLang"
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  />
+                )}
+              </button>
+              {index < languages.length - 1 && (
+                <span className="text-slate-300 text-xs mx-2 select-none">·</span>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </motion.header>

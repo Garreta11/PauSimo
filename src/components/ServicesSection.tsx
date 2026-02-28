@@ -47,7 +47,7 @@ function ServiceCard({
           className="pt-1"
         >
           <span
-            className="text-3xl tracking-[0.15em] text-slate-300 group-hover:text-slate-900 transition-colors duration-300"
+            className="text-3xl tracking-[0.15em] text-[#efc868] transition-colors duration-300"
             style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
           >
             {String(index + 1).padStart(2, '0')}
@@ -124,7 +124,7 @@ export function ServicesSection() {
       {/* Subtle background accent */}
       <div className="absolute top-0 right-0 w-1/3 h-full pointer-events-none" />
 
-      <div className="relative max-w-4xl mx-auto">
+      <div className="relative max-w-7xl mx-auto">
         {/* Heading */}
         <div ref={headingRef} className="flex items-center gap-5 mb-16">
           <motion.h3
