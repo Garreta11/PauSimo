@@ -9,11 +9,6 @@ export function PartnershipSection() {
     description: t(`partnership.${num}.description`)
   }));
 
-  const detailedServices = [1, 2, 3, 4, 5].map(num => ({
-    title: t(`partnership.detail${num}.title`),
-    description: t(`partnership.detail${num}.description`)
-  }));
-
   return (
     <section className="py-32 px-6 bg-white">
       <div className="max-w-6xl mx-auto">

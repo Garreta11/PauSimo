@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Mail, Linkedin, Globe, ArrowUpRight } from 'lucide-react';
+import { Mail, Linkedin, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function ContactSection() {

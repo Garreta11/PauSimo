@@ -3,12 +3,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export function HeroSection() {
   const { t } = useLanguage();
-  
-  const tags = [
-    t('hero.tag1'),
-    t('hero.tag2'),
-    t('hero.tag3')
-  ];
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-white px-6 py-32">

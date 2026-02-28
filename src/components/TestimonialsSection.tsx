@@ -1,12 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const ACCENT_COLORS = [
-  { ring: '#1a1a1a', bg: 'rgba(26,26,26,0.06)', line: '#1a1a1a' },
-  { ring: '#4a4a4a', bg: 'rgba(74,74,74,0.06)', line: '#4a4a4a' },
-  { ring: '#2a2a2a', bg: 'rgba(42,42,42,0.06)', line: '#2a2a2a' },
-];
-
 export function TestimonialsSection() {
   const { t } = useLanguage();
 

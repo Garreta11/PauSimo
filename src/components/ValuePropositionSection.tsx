@@ -1,10 +1,5 @@
 import { motion } from 'motion/react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useLanguage } from '../contexts/LanguageContext';
-
-
 
 export function ValuePropositionSection() {
   const { t } = useLanguage();
@@ -15,22 +10,6 @@ export function ValuePropositionSection() {
     { issue: t('value.problem3'), result: t('value.result3') },
     { issue: t('value.problem4'), result: t('value.result4') },
   ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false
-  };
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="py-32 px-6 bg-[#fdf8ed]">
