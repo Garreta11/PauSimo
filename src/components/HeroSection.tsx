@@ -54,7 +54,7 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="relative w-full max-w-md">
+            <div className="relative w-[95%] max-w-md mx-auto">
               <motion.div 
                 className="absolute -inset-4 bg-slate-900 opacity-5"
                 initial={{ rotate: 0 }}
