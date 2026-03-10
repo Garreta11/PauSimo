@@ -9,6 +9,7 @@ export function TestimonialsSection() {
     author: t(`testimonial.${num}.author`),
     role: t(`testimonial.${num}.role`),
     company: t(`testimonial.${num}.company`),
+    link: t(`testimonial.${num}.link`),
   }));
 
   return (
@@ -106,9 +107,9 @@ export function TestimonialsSection() {
                     >
                       {testimonial.author}
                     </p>
-                    <p className="text-xs tracking-[0.15em] uppercase text-slate-400 mt-0.5">
-                      {testimonial.role} · {testimonial.company}
-                    </p>
+                    <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.15em] uppercase text-slate-400 mt-0.5">
+                      {testimonial.role} · <span className="underline">{testimonial.company}</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>

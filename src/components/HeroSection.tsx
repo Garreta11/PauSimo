@@ -16,13 +16,13 @@ export function HeroSection() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-6xl lg:text-6xl leading-[1.1] font-playfair" style={{fontFamily: 'Playfair Display, serif'}}>
-                {t('hero.title')}
+                <span dangerouslySetInnerHTML={{ __html: t('hero.title') }} />
               </h1>
               <p className="text-xs tracking-[0.3em] uppercase text-slate-500">
-                <span dangerouslySetInnerHTML={{ __html: t('hero.description') }} />
-                <br/>
-                <br/>
                 {t('hero.subtitle')}
+                <br/>
+                <br/>
+                <span dangerouslySetInnerHTML={{ __html: t('hero.description') }} />
               </p>
             </motion.div>
             

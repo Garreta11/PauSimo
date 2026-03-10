@@ -20,7 +20,7 @@ export function ContactSection() {
               {t('contact.title')}
             </h2>
             <p className="text-base text-slate-900 leading-relaxed max-w-md">
-              {t('contact.description')}
+              <span dangerouslySetInnerHTML={{ __html: t('contact.description') }} />
             </p>
           </motion.div>
           
@@ -33,7 +33,7 @@ export function ContactSection() {
           >
             <div className="space-y-6">
               <motion.a 
-                href="mailto:contact@pausimo.com" 
+                href="mailto:psimop@gmail.com" 
                 className="flex items-center justify-between gap-4 text-lg text-slate-900 hover:text-slate-700 transition-colors group py-3 border-b border-slate-700"
                 whileHover={{ x: 4 }}
               >
