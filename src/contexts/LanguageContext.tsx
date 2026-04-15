@@ -1,8 +1,19 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-type Language = 'en' | 'ca' | 'es' | 'fr';
+export const ADMIN_STORAGE_KEY = 'pausimo_content';
+
+export type Language = 'en' | 'ca' | 'es' | 'fr';
+
+function readOverrides(): Partial<Record<Language, Record<string, string>>> {
+  try {
+    const stored = localStorage.getItem(ADMIN_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+}
 
 interface LanguageContextType {
   language: Language;
@@ -10,7 +21,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translations: Record<Language, Record<string, string>> = {
+export const defaultTranslations: Record<Language, Record<string, string>> = {
   en: {
     // Hero Section
     'hero.title': 'Strategic language<br/>for narrative,<br/>product & AI',
@@ -399,6 +410,17 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [overrides, setOverrides] = useState(readOverrides);
+
+  useEffect(() => {
+    const refresh = () => setOverrides(readOverrides());
+    window.addEventListener('pausimo:content-updated', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('pausimo:content-updated', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
 
   // Derive language from the current URL
   const segment = pathname.split('/').filter(Boolean)[0] ?? '';
@@ -409,7 +431,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   const t = (key: string): string => {
-    return translations[language][key] || translations['en'][key] || key;
+    return overrides[language]?.[key] ?? defaultTranslations[language]?.[key] ?? defaultTranslations['en'][key] ?? key;
   };
 
   return (

@@ -9,6 +9,7 @@ import { ContactSection } from './components/ContactSection';
 import { CarouselSection } from './components/CarouselSection';
 import { Header } from './components/Header';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { AdminDashboard } from './pages/AdminDashboard';
 
 function MainLayout() {
   return (
@@ -35,6 +36,7 @@ function AppRoutes() {
         <Route path="/cat" element={<MainLayout />} /> {/* Catalan */}
         <Route path="/es"  element={<MainLayout />} /> {/* Spanish */}
         <Route path="/fr"  element={<MainLayout />} /> {/* French */}
+        <Route path="/admin" element={<AdminDashboard />} />
         {/* Fallback → English */}
         <Route path="*"    element={<Navigate to="/" replace />} />
       </Routes>

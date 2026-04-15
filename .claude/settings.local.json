@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"t\\(\\\\`\" \"c:/Users/jordi/Documents/00_Projectes/2026/Pau Simó/pausimo/src/components/\")"
+    ]
+  }
+}
