@@ -34,6 +34,7 @@ function AppRoutes() {
         <Route path="/"    element={<MainLayout />} /> {/* English */}
         <Route path="/cat" element={<MainLayout />} /> {/* Catalan */}
         <Route path="/es"  element={<MainLayout />} /> {/* Spanish */}
+        <Route path="/fr"  element={<MainLayout />} /> {/* French */}
         {/* Fallback → English */}
         <Route path="*"    element={<Navigate to="/" replace />} />
       </Routes>

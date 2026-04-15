@@ -50,7 +50,7 @@ function ServiceCard({
             className="text-3xl tracking-[0.15em] text-[#efc868] transition-colors duration-300"
             style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
           >
-            {String(index + 1).padStart(2, '0')}
+            {String(index + 1)}.
           </span>
         </motion.div>
 
@@ -72,8 +72,8 @@ function ServiceCard({
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 + 0.35 }}
+              dangerouslySetInnerHTML={{ __html: service.description }}
             >
-              {service.description}
             </motion.p>
 
             <motion.div
@@ -126,7 +126,7 @@ export function ServicesSection() {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Heading */}
-        <div ref={headingRef} className="flex items-center gap-5 mb-16">
+        <div ref={headingRef} className="flex flex-col items-start gap-5 mb-16">
           <motion.h3
             className="text-xs tracking-[0.25em] uppercase text-slate-400 font-normal"
             initial={{ opacity: 0, x: -8 }}
@@ -135,6 +135,15 @@ export function ServicesSection() {
           >
             {t('services.heading')}
           </motion.h3>
+
+          <motion.p
+            className="text-lg w-[70%]"
+            initial={{ opacity: 0, x: -8 }}
+            animate={headingInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {t('services.heading-text')}
+          </motion.p>
         </div>
 
         {/* Services list */}

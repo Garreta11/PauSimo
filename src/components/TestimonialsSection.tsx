@@ -5,6 +5,7 @@ export function TestimonialsSection() {
   const { t } = useLanguage();
 
   const testimonials = [1, 2, 3].map(num => ({
+    description: t(`testimonial.${num}.description`),
     quote: t(`testimonial.${num}.quote`),
     author: t(`testimonial.${num}.author`),
     role: t(`testimonial.${num}.role`),
@@ -39,8 +40,8 @@ export function TestimonialsSection() {
           </h2>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px" style={{ background: '#e8c84e' }}>
+        {/* Rows */}
+        <div className="flex flex-col divide-y" style={{ borderColor: '#e8c84e' }}>
           {testimonials.map((testimonial, index) => {
             const initials = testimonial.author
               .split(' ')
@@ -52,64 +53,70 @@ export function TestimonialsSection() {
             return (
               <motion.div
                 key={index}
-                className="group relative p-10 flex flex-col" style={{ background: '#fdf8ed' }}
-                initial={{ opacity: 0, y: 50 }}
+                className="group relative py-12 px-2 grid grid-cols-1 lg:grid-cols-[3rem_1fr_1fr] gap-x-12 gap-y-6 items-start"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Top accent line — animates on hover */}
+                {/* Left accent line — animates on hover */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-[2px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                  className="absolute left-0 top-0 bottom-0 w-[2px] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out"
                   style={{ background: '#efc868' }}
                 />
 
-                {/* Issue number */}
+                {/* Number */}
                 <span
-                  className="text-[56px] leading-none text-[#efc868] select-none mb-6 -ml-1"
+                  className="text-[40px] leading-none text-[#efc868] select-none pt-1"
                   style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}
                 >
                   {String(index + 1).padStart(2, '0')}
                 </span>
 
-                {/* Oversized quote mark */}
-                <span
-                  className="text-6xl leading-none text-slate-300 select-none pointer-events-none -mb-4"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                  aria-hidden="true"
-                >
-                  "
-                </span>
-
-                {/* Quote */}
-                <blockquote
-                  className="flex-1 text-lg leading-[1.7] text-slate-700 italic mb-10"
+                {/* Work description */}
+                <p
+                  className="text-sm leading-relaxed text-slate-500"
                   style={{ fontFamily: 'Playfair Display, serif', fontWeight: 400 }}
                 >
-                  {testimonial.quote}
-                </blockquote>
+                  {testimonial.description}
+                </p>
 
-                {/* Divider */}
-                <div className="w-8 h-px bg-slate-400 mb-6" />
-
-                {/* Author row */}
-                <div className="flex items-center gap-4">
-                  <div
-                    className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium text-slate-600 border border-slate-300 bg-white"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {initials}
-                  </div>
+                {/* Quote + author */}
+                <div className="flex flex-col gap-6">
                   <div>
-                    <p
-                      className="text-sm text-slate-900"
-                      style={{ fontFamily: 'Playfair Display, serif', fontWeight: 500 }}
+                    <span
+                      className="text-4xl leading-none text-slate-300 select-none pointer-events-none block -mb-2"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                      aria-hidden="true"
                     >
-                      {testimonial.author}
-                    </p>
-                    <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.15em] uppercase text-slate-400 mt-0.5">
-                      {testimonial.role} · <span className="underline">{testimonial.company}</span>
-                    </a>
+                      "
+                    </span>
+                    <blockquote
+                      className="text-base leading-[1.7] text-slate-600 italic"
+                      style={{ fontFamily: 'Playfair Display, serif', fontWeight: 400 }}
+                    >
+                      {testimonial.quote}
+                    </blockquote>
+                  </div>
+
+                  <div className="flex items-center gap-4 pt-2 border-t border-slate-200">
+                    <div
+                      className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium text-slate-600 border border-slate-300 bg-white"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      {initials}
+                    </div>
+                    <div>
+                      <p
+                        className="text-sm text-slate-900"
+                        style={{ fontFamily: 'Playfair Display, serif', fontWeight: 500 }}
+                      >
+                        {testimonial.author}
+                      </p>
+                      <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.15em] uppercase text-slate-400 mt-0.5 hover:text-slate-600 transition-colors">
+                        {testimonial.role} · <span className="underline">{testimonial.company}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>
