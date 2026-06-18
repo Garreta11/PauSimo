@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { navItems } from "@/lib/nav";
@@ -18,6 +19,8 @@ interface HeaderProps {
 export function Header({ locale, settings }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -27,12 +30,13 @@ export function Header({ locale, settings }: HeaderProps) {
 
   const fallback = navItems[locale];
   const nl = settings?.navLabels;
+  const resolveHref = (hash: string) => isHome ? hash : `/${locale}${hash}`;
   const items = [
-    { label: nl?.problem      || fallback[0].label, href: fallback[0].href },
-    { label: nl?.areas        || fallback[1].label, href: fallback[1].href },
-    { label: nl?.howIWork     || fallback[2].label, href: fallback[2].href },
-    { label: nl?.work         || fallback[3].label, href: fallback[3].href },
-    { label: nl?.testimonials || fallback[4].label, href: fallback[4].href },
+    { label: nl?.problem      || fallback[0].label, href: resolveHref(fallback[0].href) },
+    { label: nl?.areas        || fallback[1].label, href: resolveHref(fallback[1].href) },
+    { label: nl?.howIWork     || fallback[2].label, href: resolveHref(fallback[2].href) },
+    { label: nl?.work         || fallback[3].label, href: resolveHref(fallback[3].href) },
+    { label: nl?.testimonials || fallback[4].label, href: resolveHref(fallback[4].href) },
   ];
 
   const siteName = settings?.siteName || "Pau Simó Parés";
