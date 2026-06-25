@@ -41,8 +41,9 @@ export default defineType({
         source: "title",
         maxLength: 96,
         isUnique: async (slug, { document, getClient }) => {
+          if (!document) return true;
           const client = getClient({ apiVersion: "2024-01-01" });
-          const id = (document?._id ?? "").replace(/^drafts\./, "");
+          const id = document._id.replace(/^drafts\./, "");
           return client.fetch(
             `!defined(*[
               !(_id in [$draft, $published]) &&
