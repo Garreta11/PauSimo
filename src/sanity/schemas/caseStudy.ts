@@ -37,7 +37,28 @@ export default defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      options: { source: "title", maxLength: 96 },
+      options: {
+        source: "title",
+        maxLength: 96,
+        isUnique: async (slug, { document, getClient }) => {
+          const client = getClient({ apiVersion: "2024-01-01" });
+          const id = document._id.replace(/^drafts\./, "");
+          return client.fetch(
+            `!defined(*[
+              !(_id in [$draft, $published]) &&
+              _type == "caseStudy" &&
+              slug.current == $slug &&
+              language == $language
+            ][0]._id)`,
+            {
+              draft: `drafts.${id}`,
+              published: id,
+              slug,
+              language: document.language,
+            }
+          );
+        },
+      },
       validation: (Rule) => Rule.required(),
       group: "meta",
     }),
